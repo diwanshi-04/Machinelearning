@@ -1,4 +1,11 @@
-
+"""
+A simple logistic regression (with gradient descent) model working on a dataset of 4298563 instances.
+The model gave an accuracy of 63.5% - training and 68.37% - testing with iterations = 500 and learning rate = 0.05.
+Similar results obtained for all possible combinations of iterations = 100 and learning rate = 0.1.
+The model proves to be underfitting for our dataset due to being too simple for the data
+(inference from similar values for training and test accuracies, Jtrain & jtest - similar)
+   
+ """
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -57,6 +64,13 @@ def propagate(w, b, X, Y):
     gradients = {"dw" : dw,
                  "db" : db}
     return gradients, cost
+
+"""w, b, X, Y = np.array([[1.],[2.]]), 2., np.array([[1.,2.,-1.],[3.,4.,-3.2]]), np.array([[1,0,1]])
+grads, cost = propagate(w, b, X, Y)
+print ("dw = " + str(grads["dw"]))
+print ("db = " + str(grads["db"]))
+print ("cost = " + str(cost))"""
+
 
 
 #helper function: optimize via Gradient Descent
@@ -136,3 +150,13 @@ def model(X_train, Y_train, X_test, Y_test, iterations, alpha, print_cost):
     return d
 
 d = model(train_set_X, train_set_Y, test_set_X, test_set_Y, iterations = 500, alpha = 0.05, print_cost = True)
+
+"""
+OUTPUT :    the cost after 0 iterations is: [[2772588.72223999]]
+            the cost after 100 iterations is: [[2636107.19196553]]
+            the cost after 200 iterations is: [[2624253.75377114]]
+            the cost after 300 iterations is: [[2623146.61367674]]
+            the cost after 400 iterations is: [[2623040.22673616]]
+            train accuracy: 63.58705 %
+            test accuracy: 68.30719144703127 %
+"""
